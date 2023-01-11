@@ -30,7 +30,7 @@ const HeroSection = () => {
           </div>
           <br />
           <div className="flex gap-5 mt-9">
-            <Link to="/allcar/63808e0859c9ffedc93299f9">
+            <Link to="/allcar/63bc6f16caf6b238446e73f6">
               <button className="text-white bg-blue-900 px-10 py-3 rounded-md hover:text-white hover:bg-transparent font-bold hover:border hover:border-white duration-300 transition transform ease-in-out">
                 Buy Now
               </button>

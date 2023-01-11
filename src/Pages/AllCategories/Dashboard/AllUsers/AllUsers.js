@@ -1,27 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import useTitle from "../../../../Hooks/Hooks";
 
 const AllUsers = () => {
+  const navigate = useNavigate();
+  useTitle("All Users");
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://car-factory-server.onrender.com/users");
       const data = await res.json();
       return data;
     },
   });
 
   const makeAdmin = (email) => {
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://car-factory-server.onrender.com/users/admin/${email}`, {
         method: 'PUT',
-        // headers: {
-        //     authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        // }
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
     })
         .then(res => {
             if (res.status === 403) {
                 toast.error('Failed to make an admin')
+                navigate('/')
             }
             return res.json()
         })
@@ -33,14 +38,20 @@ const AllUsers = () => {
             }
         })
 };
-  const handleDeleteUser = (email) => {
-    fetch(`http://localhost:5000/users/${email}`, {
+  const handleDeleteUser = (id) => {
+    fetch(`https://car-factory-server.onrender.com/users/${id}`, {
       method: "DELETE",
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      // },
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403) {
+            toast.error('Failed to make an admin')
+            navigate('/')
+        }
+        return res.json()
+    })
       .then((data) => {
         if (data.deletedCount > 0) {
           toast.success("User Delete successfully");
@@ -85,7 +96,7 @@ const AllUsers = () => {
                 </td>
                 <td className="lg:px-6">
                   <button
-                    onClick={() => handleDeleteUser(user.email)}
+                    onClick={() => handleDeleteUser(user._id)}
                     className="btn btn-xs bg-green-600 border-0"
                   >
                     Delete

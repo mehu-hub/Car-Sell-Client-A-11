@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_imgbb_key;
   const {
     register,
@@ -36,15 +39,21 @@ const AddProduct = () => {
           console.log(product);
           //save product
 
-          fetch("http://localhost:5000/categoriy", {
+          fetch("https://car-factory-server.onrender.com/categoriy", {
             method: "POST",
             headers: {
               "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              "authorization": `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(product),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              if (res.status === 403) {
+                  toast.error('Failed to make an admin')
+                  navigate('/')
+              }
+              return res.json()
+          })
             .then((result) => {
               console.log(result);
             });
@@ -55,7 +64,7 @@ const AddProduct = () => {
     queryKey: ["categoriy"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/categoriyProduct"
+        "https://car-factory-server.onrender.com/categoriyProduct"
       );
       const data = await res.json();
       return data;

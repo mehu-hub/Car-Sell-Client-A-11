@@ -2,12 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { myContext } from "../../../../Context/AuthProvider";
+import useTitle from "../../../../Hooks/Hooks";
 import Loading from "../../../Loading/Loading";
 
 const MyOrders = () => {
+  useTitle("My order");
   const { user } = useContext(myContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://car-factory-server.onrender.com/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -29,7 +31,7 @@ const MyOrders = () => {
     const agree = window.confirm(`Are you sure you want to this Item`);
 
     if (agree) {
-      fetch(`http://localhost:5000/bookings/${bookings}`, {
+      fetch(`https://car-factory-server.onrender.com/bookings/${bookings}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

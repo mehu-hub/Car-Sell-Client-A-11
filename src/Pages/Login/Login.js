@@ -48,6 +48,7 @@ const Login = () => {
     googleSignIn(provider)
       .then((result) => {
         const user = result.user;
+        setLoginUserEmail(user?.email);
         navigate(from, { replace: true });
         console.log(user);
         saveUser(user?.displayName, user?.email);
@@ -61,7 +62,7 @@ const Login = () => {
 
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
+    fetch("https://car-factory-server.onrender.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -114,7 +115,7 @@ const Login = () => {
             />
 
             {errors.password && (
-              <p className="text-blue-900">{errors.password?.message}</p>
+              <p className="text-green-600">{errors.password?.message}</p>
             )}
           </div>
           <div className="form-control w-full max-w-xs">
@@ -132,17 +133,17 @@ const Login = () => {
             </select>
           </div>
           <input
-            className="btn border-0 hover:bg-transparent hover:text-blue-900 hover:border hover:border-red-600 bg-blue-900 w-full mt-4"
+            className="btn border-0 hover:bg-transparent hover:text-green-600 hover:border hover:border-red-600 bg-green-600 w-full mt-4"
             value="Login"
             type="submit"
           />
           <div>
-            {loginError && <p className="text-red-600">{loginError}</p>}
+            {loginError && <p className="text-green-600">{loginError}</p>}
           </div>
         </form>
         <p className="text-sm text-start mt-3">
           New in this page?
-          <Link className="text-blue-900" to="/signup">
+          <Link className="text-secondary" to="/signup">
             {" "}
             Create new Account
           </Link>

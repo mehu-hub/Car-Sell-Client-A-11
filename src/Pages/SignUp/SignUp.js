@@ -68,7 +68,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
+    fetch("https://car-factory-server.onrender.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -158,7 +158,7 @@ const SignUp = () => {
             </select>
           </div>
           <input
-            className="btn border-0 hover:bg-transparent hover:text-blue-900 hover:border hover:border-red-600 bg-blue-900 w-full mt-4"
+            className="btn border-0 hover:bg-transparent hover:text-green-600 hover:border hover:border-red-600 bg-green-600 w-full mt-4"
             value="Sign Up"
             type="submit"
           />
@@ -166,7 +166,7 @@ const SignUp = () => {
         </form>
         <p className="text-sm text-start mt-3">
           Already have an account{" "}
-          <Link className="text-red-500" to="/login">
+          <Link className="text-secondary" to="/login">
             Please Login
           </Link>
         </p>

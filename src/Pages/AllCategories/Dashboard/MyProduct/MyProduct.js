@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
-import { PhotoProvider, PhotoView } from "react-photo-view";
+import React from "react";
 import Loading from "../../../Loading/Loading";
 
 const MyProduct = () => {
@@ -11,7 +10,7 @@ const MyProduct = () => {
   } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/product");
+      const res = await fetch("https://car-factory-server.onrender.com/product");
       const data = await res.json();
       return data;
     },

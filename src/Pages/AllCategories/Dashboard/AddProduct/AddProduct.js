@@ -3,9 +3,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../../Hooks/Hooks";
 import Loading from "../../../Loading/Loading";
 
 const AddProduct = () => {
+  useTitle("Add Product");
   const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_imgbb_KEY;
   const {
@@ -42,28 +44,40 @@ const AddProduct = () => {
 
           //save product
 
-          fetch("http://localhost:5000/allCars/", {
+          fetch("https://car-factory-server.onrender.com/allcars", {
             method: "PUT",
             headers: {
               "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              "authorization": `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(product),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              if (res.status === 403) {
+                  toast.error('Failed to make an admin')
+                  navigate('/')
+              }
+              return res.json()
+          })
             .then((result) => {
               toast.success("Product Added");
               console.log(result);
             });
-          fetch("http://localhost:5000/allCars/", {
+          fetch("https://car-factory-server.onrender.com/product", {
             method: "POST",
             headers: {
               "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              "authorization": `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(product),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              if (res.status === 403) {
+                  toast.error('Failed to make an admin')
+                  navigate('/')
+              }
+              return res.json()
+          })
             .then((result) => {
               console.log(result);
               navigate("/dashboard/myproduct");
@@ -76,7 +90,7 @@ const AddProduct = () => {
     queryKey: ["category"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/allCars/"
+        "https://car-factory-server.onrender.com/allCarsSpecialty"
       );
       const data = await res.json();
       return data;
