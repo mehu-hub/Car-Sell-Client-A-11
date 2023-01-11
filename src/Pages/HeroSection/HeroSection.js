@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import heroBanner from "../../img/banner/hhero-bg.jpg";
+import heroBanner from "../../img/img-5.jpg";
 
 const HeroSection = () => {
   return (
@@ -41,8 +41,7 @@ const HeroSection = () => {
               </button>
             </Link>
           </div>
-        </div>
-        <div></div>
+        </div> 
       </div>
     </div>
   );

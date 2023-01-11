@@ -32,7 +32,7 @@ const BookingModal = ({ selectCar, setSelectCar }) => {
       curentDate,
     };
 
-    fetch("https://frs-server-b68d.vercel.app/bookings", {
+    fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

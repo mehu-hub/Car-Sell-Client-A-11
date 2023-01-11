@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { myContext } from "../Context/AuthProvider";
 import useAdmin from "../Hooks/useAdmin";
 import Header from "../Pages/Shered/Header/Header";
-import bannerProduct from "../img/addProduct.png";
+import bannerProduct from "../img/used-car-dealer-website-head.png";
 import useSeller from "../Hooks/useSeller";
 
 const DashboardLayout = () => {

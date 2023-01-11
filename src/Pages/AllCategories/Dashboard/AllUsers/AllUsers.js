@@ -6,33 +6,39 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("https://frs-server-b68d.vercel.app/users");
+      const res = await fetch("http://localhost:5000/users");
       const data = await res.json();
       return data;
     },
   });
 
-  const handleMakeAdmin = (id) => {
-    fetch(`https://frs-server-b68d.vercel.app/users/admin/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
+  const makeAdmin = (email) => {
+    fetch(`http://localhost:5000/users/admin/${email}`, {
+        method: 'PUT',
+        // headers: {
+        //     authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        // }
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Admin Successfully Makes.");
-          refetch();
-        }
-      });
-  };
-  const handleDeleteUser = (user) => {
-    fetch(`https://frs-server-b68d.vercel.app/users/${user}`, {
+        .then(res => {
+            if (res.status === 403) {
+                toast.error('Failed to make an admin')
+            }
+            return res.json()
+        })
+        .then(data => {
+            if (data.modifiedCount > 0) {
+                console.log('admin success', data)
+                toast.success('Successfully made an admin')
+                refetch();
+            }
+        })
+};
+  const handleDeleteUser = (email) => {
+    fetch(`http://localhost:5000/users/${email}`, {
       method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      // },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +76,7 @@ const AllUsers = () => {
                 <td className="lg:px-6">
                   {user?.role !== "admin" && (
                     <button
-                      onClick={() => handleMakeAdmin(user._id)}
+                      onClick={() => makeAdmin(user.email)}
                       className="btn btn-xs bg-teal-500 border-0"
                     >
                       Make Admin
@@ -79,7 +85,7 @@ const AllUsers = () => {
                 </td>
                 <td className="lg:px-6">
                   <button
-                    onClick={() => handleDeleteUser(user._id)}
+                    onClick={() => handleDeleteUser(user.email)}
                     className="btn btn-xs bg-green-600 border-0"
                   >
                     Delete

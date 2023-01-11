@@ -11,7 +11,7 @@ const MyProduct = () => {
   } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
-      const res = await fetch("https://frs-server-b68d.vercel.app/product");
+      const res = await fetch("http://localhost:5000/product");
       const data = await res.json();
       return data;
     },

@@ -3,7 +3,8 @@
 .Client repo link - https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-graphixer-41
 
 People can used car sell on this Webiste
-And Buyer can buy car resanable price.
+-------------------------------------------
+And Buyer can buy car reasonable price.
 
 .For create this React Web App i use
 1. React

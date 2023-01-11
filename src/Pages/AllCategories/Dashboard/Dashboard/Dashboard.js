@@ -36,7 +36,7 @@ const AddProduct = () => {
           console.log(product);
           //save product
 
-          fetch("https://frs-server-b68d.vercel.app/categoriy", {
+          fetch("http://localhost:5000/categoriy", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -55,7 +55,7 @@ const AddProduct = () => {
     queryKey: ["categoriy"],
     queryFn: async () => {
       const res = await fetch(
-        "https://frs-server-b68d.vercel.app/categoriyProduct"
+        "http://localhost:5000/categoriyProduct"
       );
       const data = await res.json();
       return data;
