@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://car-factory-server.onrender.com/allCars"),
+        loader: () => fetch("http://localhost:5000/allCars"),
       },
       { path: "/signup", element: <SignUp></SignUp> },
       { path: "/login", element: <Login></Login> },
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
            </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://car-factory-server.onrender.com/allCars/${params.id}`),
+          fetch(`http://localhost:5000/allCars/${params.id}`),
       },
     ],
   },

@@ -39,7 +39,7 @@ const AddProduct = () => {
           console.log(product);
           //save product
 
-          fetch("https://car-factory-server.onrender.com/categoriy", {
+          fetch("http://localhost:5000/categoriy", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -64,7 +64,7 @@ const AddProduct = () => {
     queryKey: ["categoriy"],
     queryFn: async () => {
       const res = await fetch(
-        "https://car-factory-server.onrender.com/categoriyProduct"
+        "http://localhost:5000/categoriyProduct"
       );
       const data = await res.json();
       return data;

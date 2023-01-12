@@ -9,7 +9,7 @@ const MyOrders = () => {
   useTitle("My order");
   const { user } = useContext(myContext);
 
-  const url = `https://car-factory-server.onrender.com/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -20,7 +20,7 @@ const MyOrders = () => {
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          "authorization": `bearer ${localStorage.getItem("accessToken")}`,
         },
       });
       const data = await res.json();
@@ -31,7 +31,7 @@ const MyOrders = () => {
     const agree = window.confirm(`Are you sure you want to this Item`);
 
     if (agree) {
-      fetch(`https://car-factory-server.onrender.com/bookings/${bookings}`, {
+      fetch(`http://localhost:5000/bookings/${bookings}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

@@ -10,7 +10,7 @@ const MyProduct = () => {
   } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
-      const res = await fetch("https://car-factory-server.onrender.com/product");
+      const res = await fetch("http://localhost:5000/product");
       const data = await res.json();
       return data;
     },

@@ -44,7 +44,7 @@ const AddProduct = () => {
 
           //save product
 
-          fetch("https://car-factory-server.onrender.com/allcars", {
+          fetch("http://localhost:5000/allcars", {
             method: "PUT",
             headers: {
               "content-type": "application/json",
@@ -63,7 +63,7 @@ const AddProduct = () => {
               toast.success("Product Added");
               console.log(result);
             });
-          fetch("https://car-factory-server.onrender.com/product", {
+          fetch("http://localhost:5000/product", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -90,7 +90,7 @@ const AddProduct = () => {
     queryKey: ["category"],
     queryFn: async () => {
       const res = await fetch(
-        "https://car-factory-server.onrender.com/allCarsSpecialty"
+        "http://localhost:5000/allCarsSpecialty"
       );
       const data = await res.json();
       return data;
