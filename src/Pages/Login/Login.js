@@ -141,7 +141,7 @@ const Login = () => {
             {loginError && <p className="text-green-600">{loginError}</p>}
           </div>
         </form>
-        <p className="text-sm text-start mt-5">
+        <p className="text-sm text-start mt-3">
           New in this page?
           <Link className="text-secondary" to="/signup">
             {" "}
