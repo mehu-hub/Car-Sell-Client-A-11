@@ -44,7 +44,7 @@ const AddProduct = () => {
 
           //save product
 
-          fetch("http://localhost:5000/allcars", {
+          fetch("https://server-ruddy-five.vercel.app/allcars", {
             method: "PUT",
             headers: {
               "content-type": "application/json",
@@ -63,7 +63,7 @@ const AddProduct = () => {
               toast.success("Product Added");
               console.log(result);
             });
-          fetch("http://localhost:5000/product", {
+          fetch("https://server-ruddy-five.vercel.app/product", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -90,7 +90,7 @@ const AddProduct = () => {
     queryKey: ["category"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/allCarsSpecialty"
+        "https://server-ruddy-five.vercel.app/allCarsSpecialty"
       );
       const data = await res.json();
       return data;

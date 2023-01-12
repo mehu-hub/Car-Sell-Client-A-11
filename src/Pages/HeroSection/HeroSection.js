@@ -10,7 +10,7 @@ const HeroSection = () => {
     >
        
 
-      <div className="grid   lg:grid-cols-2 grid-cols-1 text-start   lg:mr-80">
+      <div className="grid lg:grid-cols-2 grid-cols-1 text-start mx-20  lg:mr-80">
         <div>
           <h2 className="text-white text-6xl font-bold">ONTDEK VOLVO SELECKT</h2>
           <br />

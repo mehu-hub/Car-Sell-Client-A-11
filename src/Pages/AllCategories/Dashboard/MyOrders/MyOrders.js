@@ -9,7 +9,7 @@ const MyOrders = () => {
   useTitle("My order");
   const { user } = useContext(myContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://server-ruddy-five.vercel.app/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -31,7 +31,7 @@ const MyOrders = () => {
     const agree = window.confirm(`Are you sure you want to this Item`);
 
     if (agree) {
-      fetch(`http://localhost:5000/bookings/${bookings}`, {
+      fetch(`https://server-ruddy-five.vercel.app/bookings/${bookings}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

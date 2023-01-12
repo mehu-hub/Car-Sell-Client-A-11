@@ -10,14 +10,14 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://server-ruddy-five.vercel.app/users");
       const data = await res.json();
       return data;
     },
   });
 
   const makeAdmin = (email) => {
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://server-ruddy-five.vercel.app/users/admin/${email}`, {
         method: 'PUT',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +39,7 @@ const AllUsers = () => {
         })
 };
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://server-ruddy-five.vercel.app/users/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
