@@ -143,7 +143,7 @@ const Login = () => {
         </form>
         <p className="text-sm text-start mt-3">
           New in this page?
-          <Link className="text-secondary" to="/signup">
+          <Link className="text-primary" to="/signup">
             {" "}
             Create new Account
           </Link>
