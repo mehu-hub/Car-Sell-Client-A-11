@@ -25,7 +25,7 @@ const Header = () => {
 
   const handelLogOut = () => {
     logOut()
-      .then((result) => {})
+      .then((result) => { })
       .catch((error) => console.error(error));
   };
 
@@ -56,7 +56,14 @@ const Header = () => {
         >
           Blog
         </Link>
+        
       </Typography>
+      <Link
+            to="/contact"
+            className="flex items-center hover:text-lg duration-300 transform hover:text-amber-200 font-bold "
+          >
+            Contact Us
+          </Link>
 
       {user?.uid && (
         <>
@@ -72,6 +79,7 @@ const Header = () => {
             >
               Dashboard
             </Link>
+            
           </Typography>
           <Typography
             as="li"
@@ -96,6 +104,7 @@ const Header = () => {
       <div className="container mx-auto md:flex md:items-center md:justify-between text-blue-gray-900">
         <div className="hidden lg:block">{navList}</div>
         <div className="flex gap-6">
+          
           <div className="hidden md:block">
             {user?.photoURL ? (
               <img
