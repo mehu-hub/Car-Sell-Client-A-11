@@ -1,6 +1,5 @@
-People can used car sell on this Webiste
+People can repair car on this Webiste
 -------------------------------------------
-And Buyer can buy car reasonable price.
 
 .For create this React Web App i use
 1. React
