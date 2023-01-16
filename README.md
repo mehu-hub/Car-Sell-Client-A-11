@@ -1,7 +1,3 @@
-.Live site link - https://car-hub-org.netlify.app/
-
-.Client repo link - https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-graphixer-41
-
 People can used car sell on this Webiste
 -------------------------------------------
 And Buyer can buy car reasonable price.
